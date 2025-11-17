@@ -1,11 +1,33 @@
 pipeline {
-    agent any
 
-    stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-                }
-            }
-        }
+ agent any
+
+ tools {jdk 'JAVA_HOME’, maven 'M2_HOME'}
+
+ stages {
+
+ stage('GIT') {
+
+           steps {
+
+               git branch: 'master',
+
+               url: 'https://github.com/yasmine123ab/aboudiYasmine4Twin8.git'
+
+          }
+
+     }
+
+ stage ('Compile Stage') {
+
+ steps {
+
+ sh 'mvn clean compile'
+
+ }
+
+ }
+
+ }
+
 }

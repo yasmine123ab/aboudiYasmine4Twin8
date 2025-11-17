@@ -10,7 +10,7 @@ pipeline {
 
            steps {
 
-               git branch: 'master',
+               git branch: 'main',
 
                url: 'https://github.com/yasmine123ab/aboudiYasmine4Twin8.git'
 

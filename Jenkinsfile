@@ -13,14 +13,14 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
+        stage('Checkout Code') {
             steps {
                 git branch: 'main',
                     url: 'https://github.com/yasmine123ab/aboudiYasmine4Twin8.git'
             }
         }
 
-        stage('Build Maven') {
+        stage('Build Maven Project') {
             steps {
                 sh 'mvn clean install -DskipTests'
             }
@@ -34,11 +34,17 @@ pipeline {
             }
         }
 
-        stage('Push to Docker Hub') {
+        stage('Push Docker Image to Docker Hub') {
             steps {
-                withCredentials([string(credentialsId: 'dockerhub-pass', variable: 'DOCKERHUB_PASS')]) {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub-creds',
+                        usernameVariable: 'DOCKER_USER',
+                        passwordVariable: 'DOCKER_PASS'
+                    )
+                ]) {
                     sh """
-                        echo "$DOCKERHUB_PASS" | docker login -u $REGISTRY --password-stdin
+                        echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
                         docker push $REGISTRY/$IMAGE_NAME:$IMAGE_TAG
                     """
                 }

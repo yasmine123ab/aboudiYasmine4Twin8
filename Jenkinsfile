@@ -13,7 +13,7 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
+        stage('Checkout Codee') {
             steps {
                 git branch: 'main',
                     url: 'https://github.com/yasmine123ab/aboudiYasmine4Twin8.git'

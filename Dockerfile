@@ -1,3 +1,3 @@
-FROM local-openjdk17:1.0
-COPY target/*.jar /app.jar
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+FROM scratch
+ADD target/student-management-0.0.1-SNAPSHOT.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]

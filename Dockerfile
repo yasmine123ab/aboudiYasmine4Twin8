@@ -1,3 +1,3 @@
-FROM openjdk:17-jdk-slim
-COPY target/*.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM local-openjdk17:1.0
+COPY target/*.jar /app.jar
+ENTRYPOINT ["java", "-jar", "/app.jar"]
